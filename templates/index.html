@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Gastos e Ingresos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 Control de Gastos e Ingresos</h1>
+        </header>
+
+        <div class="dashboard">
+            <div class="summary-cards">
+                <div class="card income-card">
+                    <h3>Ingresos</h3>
+                    <p class="amount" id="income">$0.00</p>
+                </div>
+                <div class="card expense-card">
+                    <h3>Gastos</h3>
+                    <p class="amount" id="expenses">$0.00</p>
+                </div>
+                <div class="card balance-card">
+                    <h3>Balance</h3>
+                    <p class="amount" id="balance">$0.00</p>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Agregar Transacción</h2>
+                <form id="transactionForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="type">Tipo:</label>
+                            <select id="type" name="type" required>
+                                <option value="">-- Selecciona --</option>
+                                <option value="income">Ingreso</option>
+                                <option value="expense">Gasto</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Categoría:</label>
+                            <select id="category" name="category" required>
+                                <option value="">-- Cargando --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="amount">Cantidad:</label>
+                            <input type="number" id="amount" name="amount" placeholder="0.00" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Fecha:</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Descripción:</label>
+                        <input type="text" id="description" name="description" placeholder="Descripción" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Agregar Transacción</button>
+                </form>
+            </div>
+
+            <div class="transactions-section">
+                <h2>Historial de Transacciones</h2>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="income">Ingresos</button>
+                    <button class="filter-btn" data-filter="expense">Gastos</button>
+                </div>
+                <table class="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Descripción</th>
+                            <th>Categoría</th>
+                            <th>Tipo</th>
+                            <th>Cantidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsBody">
+                        <tr>
+                            <td colspan="6">Cargando transacciones...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
